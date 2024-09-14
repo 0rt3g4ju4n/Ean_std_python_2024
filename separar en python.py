@@ -1,6 +1,7 @@
 import string
 import time
 
+
 # Crear una lista con todas las letras del abecedario en mayúsculas
 abecedario = list(string.ascii_uppercase)
 
