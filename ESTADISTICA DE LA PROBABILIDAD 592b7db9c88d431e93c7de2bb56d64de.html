@@ -1,0 +1,983 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ESTADISTICA DE LA PROBABILIDAD</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="592b7db9-c88d-431e-93c7-de2bb56d64de" class="page sans"><header><h1 class="page-title">ESTADISTICA DE LA PROBABILIDAD</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Class</th><td><span class="selected-value select-value-color-blue">L-611</span></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Type</th><td><span class="selected-value select-value-color-orange">Presencial</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Days</th><td><span class="selected-value select-value-color-green">Sabado</span></td></tr><tr class="property-row property-row-status"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesStatus"><path d="M8.75488 1.02344C8.75488 0.613281 8.41309 0.264648 8.00293 0.264648C7.59277 0.264648 7.25098 0.613281 7.25098 1.02344V3.11523C7.25098 3.51855 7.59277 3.86719 8.00293 3.86719C8.41309 3.86719 8.75488 3.51855 8.75488 3.11523V1.02344ZM3.91504 5.0293C4.20215 5.31641 4.69434 5.32324 4.97461 5.03613C5.26855 4.74902 5.26855 4.25684 4.98145 3.96973L3.53906 2.52051C3.25195 2.2334 2.7666 2.21973 2.47949 2.50684C2.19238 2.79395 2.18555 3.28613 2.47266 3.57324L3.91504 5.0293ZM10.9629 4.01758C10.6826 4.30469 10.6826 4.79688 10.9697 5.08398C11.2568 5.37109 11.749 5.36426 12.0361 5.07715L13.4854 3.62793C13.7725 3.34082 13.7725 2.84863 13.4785 2.55469C13.1982 2.27441 12.7061 2.27441 12.4189 2.56152L10.9629 4.01758ZM15.0234 8.78906C15.4336 8.78906 15.7822 8.44727 15.7822 8.03711C15.7822 7.62695 15.4336 7.28516 15.0234 7.28516H12.9385C12.5283 7.28516 12.1797 7.62695 12.1797 8.03711C12.1797 8.44727 12.5283 8.78906 12.9385 8.78906H15.0234ZM0.975586 7.28516C0.56543 7.28516 0.223633 7.62695 0.223633 8.03711C0.223633 8.44727 0.56543 8.78906 0.975586 8.78906H3.07422C3.48438 8.78906 3.83301 8.44727 3.83301 8.03711C3.83301 7.62695 3.48438 7.28516 3.07422 7.28516H0.975586ZM12.0361 10.9902C11.749 10.71 11.2568 10.71 10.9629 10.9971C10.6826 11.2842 10.6826 11.7764 10.9697 12.0635L12.4258 13.5127C12.7129 13.7998 13.2051 13.793 13.4922 13.5059C13.7793 13.2256 13.7725 12.7266 13.4854 12.4395L12.0361 10.9902ZM2.52051 12.4395C2.22656 12.7266 2.22656 13.2188 2.50684 13.5059C2.79395 13.793 3.28613 13.7998 3.57324 13.5127L5.02246 12.0703C5.31641 11.7832 5.31641 11.291 5.03613 11.0039C4.74902 10.7168 4.25684 10.71 3.96973 10.9971L2.52051 12.4395ZM8.75488 12.9658C8.75488 12.5557 8.41309 12.207 8.00293 12.207C7.59277 12.207 7.25098 12.5557 7.25098 12.9658V15.0576C7.25098 15.4609 7.59277 15.8096 8.00293 15.8096C8.41309 15.8096 8.75488 15.4609 8.75488 15.0576V12.9658Z"></path></svg></span>Status</th><td><span class="status-value select-value-color-blue"><div class="status-dot status-dot-color-blue"></div>In progress</span></td></tr></tbody></table></header><div class="page-body"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Clase #1</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Syllabus</summary><div class="indented"><ul id="2e795423-df79-4dea-a893-3e64e82a14cb" class="bulleted-list"><li style="list-style-type:disc">144 horas  de estudio</li></ul><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Plan temático</summary><div class="indented"><ul id="12616b64-0d98-4653-af93-4ec85a5af260" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Fundamentos de estadística para la analítica de datos</span><div class="indented"></div></li></ul><ul id="83225050-4878-415a-86f2-ff8518907b21" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Visualización, exploración y descripción de negocios</span><div class="indented"></div></li></ul><ul id="3b9077b9-742a-4cc1-9f78-27a770716716" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Distribuciones de probabilidad discretas y continuas</span><div class="indented"></div></li></ul><ul id="72821245-c41a-44bc-8839-55dbe24c898b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Introducción al muestreo</span><div class="indented"></div></li></ul><ul id="c4b09fcf-15e2-438e-8252-50b04bdfe5e0" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Intervalos de confianza</span><div class="indented"></div></li></ul><ul id="79a7ed6c-2fc2-44d5-921f-4ab1ad04744c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Pruebas de hipótesis</span><div class="indented"></div></li></ul><ul id="604417dd-7f05-4e65-9a9e-e6a3cfad7fc2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Análisis de regresión</span><div class="indented"></div></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Porcentaje notas</summary><div class="indented"><h3 id="18bd17bf-0033-4c49-ae0a-9d88d20f5bc6" class="">Fase 1:</h3><ul id="9b127407-3468-497f-ac00-27663184e75f" class="bulleted-list"><li style="list-style-type:disc">Actividad 1 - individual 13%</li></ul><ul id="e3c2fd0b-2ffb-4962-a715-f4ec91680c12" class="bulleted-list"><li style="list-style-type:disc">Actividad 2 - Grupal 12%</li></ul><h3 id="ad27981c-52ed-4e8d-9fc1-b398f734bfb4" class="">Fase 2:</h3><ul id="b7225c86-fb54-4ce9-b55e-b07570f46330" class="bulleted-list"><li style="list-style-type:disc">Actividad 1 - individual 13%</li></ul><ul id="f824e999-c5d1-433d-ac07-e8bcdc597eaa" class="bulleted-list"><li style="list-style-type:disc">Actividad 2 - Grupal 12%</li></ul><h3 id="ed31eed8-16cf-4b0b-87a9-bd4d635d38ad" class="">Fase 3:</h3><p id="c2133f60-ec61-4d1a-a248-dca1c18aefaf" class="">Actividad Final - </p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Estadística</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0"><strong>📊 ¿Qué es la Estadística?</strong></summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Definición General</strong></summary><div class="indented"><p id="9464654b-4d35-4007-83ff-86f0f6de30cc" class="">La estadística es la rama de las matemáticas que se ocupa de recopilar, organizar, analizar e interpretar datos para hacer inferencias y tomar decisiones fundamentadas. Se utiliza en diversos campos como economía, biología, sociología, e ingeniería, entre otros.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>📂 Tipos de Estadística</strong></summary><div class="indented"><ul id="703deffc-c6d5-42af-9bb2-2870e2a7582a" class="bulleted-list"><li style="list-style-type:disc"><strong>Estadística Descriptiva:</strong><p id="7eb0e16f-5c29-4a7a-8c71-72353e0f3b8b" class="">Se encarga de <strong>resumir</strong> y <strong>organizar</strong> los datos obtenidos en un estudio mediante tablas, gráficos, y medidas numéricas (promedio, mediana, moda, etc.).</p><p id="73339698-c8a3-4923-8c53-f63fbd001c50" class=""><strong>Ejemplo</strong>: En un conjunto de datos sobre las edades de un grupo de personas, la estadística descriptiva puede calcular el promedio de las edades.</p></li></ul><ul id="ad0cd3ab-ef00-4ab2-a8da-2a26228a1bf5" class="bulleted-list"><li style="list-style-type:disc"><strong>Estadística Inferencial:</strong><p id="2cf5d7eb-23f6-4234-bf0f-1455e7da6bd8" class="">Permite hacer <strong>predicciones</strong> o <strong>inferencias</strong> sobre una población basándose en los datos obtenidos de una muestra. Se basa en la teoría de la probabilidad para generalizar los resultados.</p><p id="76dc6348-c7db-4af4-a01b-2fa5a11b68de" class=""><strong>Ejemplo</strong>: Si tenemos datos sobre un grupo pequeño de estudiantes, podemos hacer inferencias sobre las preferencias de toda la escuela.</p></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>⚙️ Aplicaciones de la Estadística</strong></summary><div class="indented"><ul id="742609d5-23fc-4f4f-aa7e-f514b092680a" class="bulleted-list"><li style="list-style-type:disc"><strong>Ciencia:</strong><p id="ae5616a7-1d6a-4b41-ae78-218d032e71c8" class="">Para analizar datos experimentales y formular conclusiones.</p></li></ul><ul id="064f61e5-2dfa-4287-ab10-6fb6bdda04fd" class="bulleted-list"><li style="list-style-type:disc"><strong>Negocios:</strong><p id="e35af3e7-2f9a-454e-87a5-1eaaeaa3cbdd" class="">Para predecir tendencias del mercado, evaluar el rendimiento de productos o servicios.</p></li></ul><ul id="3a6bc0e9-6a00-4dbe-a851-b160dfed1bc6" class="bulleted-list"><li style="list-style-type:disc"><strong>Medicina:</strong><p id="e4073b16-5d4e-434e-864b-06bccb95553f" class="">Para evaluar la eficacia de tratamientos a través de ensayos clínicos.</p></li></ul></div></details><h3 id="8e7e0ac1-09e4-4e0c-9b73-023dea7cc733" class=""><strong>🔢 Ejemplo en Python: Visualización de Datos Estadísticos</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d7cc8454-98e3-41c7-8927-ac1f00bff4d0" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import matplotlib.pyplot as plt
+
+# Datos de ejemplo: edades de un grupo de personas
+edades = [22, 25, 30, 35, 40, 28, 32, 45, 50, 28, 30, 37]
+
+# Crear histograma para visualizar la distribución de edades
+plt.hist(edades, bins=5, edgecolor=&#x27;black&#x27;)
+plt.title(&#x27;Distribución de Edades&#x27;)
+plt.xlabel(&#x27;Edades&#x27;)
+plt.ylabel(&#x27;Frecuencia&#x27;)
+plt.show()
+
+</code></pre><p id="c254fc07-db29-4125-a9c0-a9e78e18c9c5" class=""><strong>Explicación:</strong></p><p id="49be01eb-585f-4b5a-9f54-d987127ccec9" class="">Este código genera un histograma que muestra cómo se distribuyen las edades en un grupo. La función <code>plt.hist()</code> organiza los datos en &quot;bins&quot; (intervalos) para visualizar la frecuencia con la que ocurren los distintos valores de edad.</p><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>📐 Fórmulas Clave</strong></summary><div class="indented"><ol type="1" id="9e4c32fa-464b-448c-8a4d-44a00caa60f4" class="numbered-list" start="1"><li><strong>Media (Promedio):</strong><figure id="8caa9b80-ceb5-4450-a741-83dbab0a07b9" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><mo>=</mo><mfrac><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>x</mi><mi>i</mi></msub></mrow><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">
+\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
+
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5678em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.18em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.494em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure><p id="91bbabad-5848-4c6a-acd2-10ee5d15b7b8" class="">Donde:</p><ul id="d1df4532-4be4-461a-a7e5-802893051eff" class="bulleted-list"><li style="list-style-type:disc"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover></mrow><annotation encoding="application/x-tex">\bar{x} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5678em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">ˉ</span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span>   es la media.</li></ul><ul id="95034d4b-0ec2-45ca-afa4-0cc2456289f3" class="bulleted-list"><li style="list-style-type:disc"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">x_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span> es cada valor en el conjunto de datos.</li></ul><ul id="3144609f-dc77-4e0e-92b5-6417e01c5d49" class="bulleted-list"><li style="list-style-type:disc"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span><span>﻿</span></span> es el número de observaciones.</li></ul></li></ol><ol type="1" id="fad15a57-c16d-46f4-b0eb-2e06a54190b2" class="numbered-list" start="2"><li><strong>Varianza:</strong><figure id="b596a616-abf7-4efe-a894-19b286e75ec2" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mfrac><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">
+σ^2 = \frac{\sum_{i=1}^{n} (x_i-\bar{x})^2}{n}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1898em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5038em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure><p id="380f0766-7700-49a1-bd45-e32e5c615e37" class="">Donde:</p><ul id="548fc114-00e9-475a-b502-b46d9b9e6835" class="bulleted-list"><li style="list-style-type:disc"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\sigma^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span> es la varianza.</li></ul><ul id="6e42885c-8be9-44be-bf22-832d7fc4f796" class="bulleted-list"><li style="list-style-type:disc"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">x_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span>  es cada valor en el conjunto de datos.</li></ul><ul id="447d2dfc-0a71-4664-b8cf-5827139e0cb5" class="bulleted-list"><li style="list-style-type:disc"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover></mrow><annotation encoding="application/x-tex">\bar{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5678em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">ˉ</span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span>   es la media.</li></ul></li></ol></div></details><p id="a1a2b1a8-52eb-4386-9816-2abb85880196" class="">
+</p></div></details><hr id="0e01a3ea-75db-468f-9f91-adc452592c3f"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0"><strong>🔢 Variables y sus Tipos</strong></summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>¿Qué es una Variable?</strong></summary><div class="indented"><p id="c7e0e78f-f78b-4640-a4a0-d80c77c131e6" class="">Una <strong>variable</strong> es una característica o atributo que puede tomar diferentes valores. Es un concepto fundamental en estadística y es lo que se mide o registra en los estudios. Las variables pueden ser cualitativas (categóricas) o cuantitativas (numéricas), dependiendo del tipo de dato que representan.</p></div></details><hr id="139468c5-c830-4a58-ba8e-7d827e1ab973"/><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Tipos de Variables</strong></summary><div class="indented"><h3 id="f4ff9438-df41-43dc-b45c-0f65692ec118" class="">1. <strong>Variables Cualitativas (Categóricas)</strong></h3><p id="245b8af4-76f7-4995-99eb-96e1ae567c69" class="">Estas variables <strong>describen categorías</strong> o cualidades y no se expresan mediante números. Se dividen en dos tipos principales:</p><ul id="2418c5f5-357b-424a-8746-a79307c7c195" class="bulleted-list"><li style="list-style-type:disc"><strong>Nominales:</strong><p id="072d6900-fa29-46a2-a6ed-3bb708aaa7f3" class="">No tienen un orden intrínseco.</p><p id="4ad7f20e-2383-4a07-9aca-4ee2fcd1fd37" class=""><strong>Ejemplo:</strong> Colores de ojos (azul, verde, marrón).</p></li></ul><ul id="8a9fcfec-a58a-4484-b49b-d57ffe1bde7f" class="bulleted-list"><li style="list-style-type:disc"><strong>Ordinales:</strong><p id="4b99c26b-5f71-455b-9c74-bb37ad869e2a" class="">Tienen un orden o jerarquía.</p><p id="1178835c-39d0-40b6-9b65-16a03bd166d3" class=""><strong>Ejemplo:</strong> Niveles de educación (primaria, secundaria, universidad).</p></li></ul><hr id="fb4629b0-2492-4c59-9827-dfa4b5d79e7b"/><h3 id="ed0bb853-296f-406a-bde3-5e25c72a47c5" class="">2. <strong>Variables Cuantitativas (Numéricas)</strong></h3><p id="76c2a6bf-40e2-45f9-91f2-808eac183781" class="">Estas variables <strong>representan cantidades</strong> y se expresan mediante números. También se dividen en dos tipos principales:</p><ul id="654077c0-7926-4596-b226-5c6692dcf1ec" class="bulleted-list"><li style="list-style-type:disc"><strong>Discretas:</strong><p id="46c66190-0dad-4472-9efa-5892adb9155a" class="">Solo pueden tomar valores específicos (enteros).</p><p id="0dfe63b2-0215-444d-8600-6e9f8681e5f1" class=""><strong>Ejemplo:</strong> Número de hijos en una familia.</p></li></ul><ul id="8ebf1740-34e8-42af-acd1-5da0997b612e" class="bulleted-list"><li style="list-style-type:disc"><strong>Continuas:</strong><p id="659d3ae8-4d1d-4353-8f22-d2c2dd5d936e" class="">Pueden tomar cualquier valor dentro de un rango.</p><p id="2c5a0828-37fc-469e-be44-f7c1697b3ec7" class=""><strong>Ejemplo:</strong> Altura de una persona (puede ser 1.75, 1.76, etc.).</p></li></ul><hr id="dd561978-2fa8-4eb6-a4c1-d1c2d58a1413"/><h3 id="44eaee84-d655-45c0-bfa6-7fd685eceb54" class=""><strong>Variable Temporal</strong></h3><p id="878f65a1-9bae-483e-b7fd-e0096ea49b5e" class="">Una <strong>variable temporal</strong> es un tipo de variable que <strong>representa el paso del tiempo</strong> o el instante en el que ocurre un evento. Es fundamental en estudios de series temporales, donde se analiza cómo cambian las variables a lo largo del tiempo.</p><p id="d459bd7b-9c5f-4eec-a78d-e6a92364d8a6" class=""><strong>Ejemplos comunes:</strong></p><ul id="16ce1814-914c-4a33-bb0c-769ecbe1ae24" class="bulleted-list"><li style="list-style-type:disc">Fecha de nacimiento</li></ul><ul id="8adb602d-7ff4-4483-8065-5ab03e202f7e" class="bulleted-list"><li style="list-style-type:disc">Años de servicio en una empresa</li></ul><ul id="0cd57b97-be22-43e0-967d-f91814915e19" class="bulleted-list"><li style="list-style-type:disc">Tiempo que tarda un proceso en completarse</li></ul><p id="d1392a4e-c669-44ad-8e97-60dea6a9f7ab" class="">Estas variables permiten analizar patrones de comportamiento que dependen del tiempo, como las tendencias de ventas anuales o la evolución del clima.</p></div></details><hr id="84bde3ff-5e2c-43d9-915a-a0cc82988f94"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Ejemplo en Python: Variables Cuantitativas y Temporales</strong></summary><div class="indented"><p id="b8d5610c-ad60-4449-bd4f-583b83b48a73" class="">Supongamos que tenemos un conjunto de datos sobre las ventas de una tienda a lo largo del tiempo. Queremos analizar las ventas por mes.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e41d4860-65c2-4e3c-aed6-d73d64f34f6b" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">python
+Copy code
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Crear un DataFrame con datos ficticios de ventas
+data = {&#x27;Mes&#x27;: [&#x27;Enero&#x27;, &#x27;Febrero&#x27;, &#x27;Marzo&#x27;, &#x27;Abril&#x27;, &#x27;Mayo&#x27;],
+        &#x27;Ventas&#x27;: [200, 250, 300, 280, 320]}
+
+df = pd.DataFrame(data)
+
+# Graficar las ventas a lo largo del tiempo (meses)
+plt.plot(df[&#x27;Mes&#x27;], df[&#x27;Ventas&#x27;], marker=&#x27;o&#x27;)
+plt.title(&#x27;Ventas Mensuales&#x27;)
+plt.xlabel(&#x27;Mes&#x27;)
+plt.ylabel(&#x27;Ventas&#x27;)
+plt.show()
+
+</code></pre><p id="e555eb27-a08a-4865-a3af-9964ca4bca02" class=""><strong>Explicación:</strong></p><p id="533db0cf-b338-4248-bb7d-227238f6521e" class="">Este ejemplo muestra cómo graficar una variable cuantitativa continua (ventas) a lo largo de una variable temporal (meses). La gráfica nos permite visualizar el patrón de ventas a lo largo del tiempo.</p></div></details><hr id="6388929d-8753-4cb0-9c22-e8ce3ecee84d"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Fórmulas Relacionadas</strong></summary><div class="indented"><ol type="1" id="790a7b19-d2d3-4d89-941e-cf11a86dde19" class="numbered-list" start="1"><li><strong>Promedio para Variables Cuantitativas:</strong><figure id="752acdb4-7164-4499-b2ec-08029d44481c" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><mo>=</mo><mfrac><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>x</mi><mi>i</mi></msub></mrow><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">
+
+\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
+
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5678em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.18em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.494em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure><p id="dcc24914-30d4-475d-ab05-1e1713914064" class="">Donde:</p><ul id="7a8da4cc-b7d8-4868-a0cd-5a8f46b34631" class="bulleted-list"><li style="list-style-type:disc"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">x_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span> es el valor de la variable.</li></ul><ul id="8bce3e69-60d9-419b-9260-1c829582354b" class="bulleted-list"><li style="list-style-type:disc"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span><span>﻿</span></span> es el número total de observaciones.</li></ul></li></ol><ol type="1" id="ecb02d56-ae3b-419d-bd20-36840fc5851e" class="numbered-list" start="2"><li><strong>Desviación Estándar:</strong>σ<figure id="938306ab-0053-4d9e-94c5-cf63d2d2c936" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>σ</mi><mo>=</mo><msqrt><mfrac><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mi>n</mi></mfrac></msqrt></mrow><annotation encoding="application/x-tex">
+
+\sigma = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n}}
+
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.44em;vertical-align:-0.7021em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7379em;"><span class="svg-align" style="top:-4.4em;"><span class="pstrut" style="height:4.4em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.494em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.6979em;"><span class="pstrut" style="height:4.4em;"></span><span class="hide-tail" style="min-width:1.02em;height:2.48em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='2.48em' viewBox='0 0 400000 2592' preserveAspectRatio='xMinYMin slice'><path d='M424,2478
+c-1.3,-0.7,-38.5,-172,-111.5,-514c-73,-342,-109.8,-513.3,-110.5,-514
+c0,-2,-10.7,14.3,-32,49c-4.7,7.3,-9.8,15.7,-15.5,25c-5.7,9.3,-9.8,16,-12.5,20
+s-5,7,-5,7c-4,-3.3,-8.3,-7.7,-13,-13s-13,-13,-13,-13s76,-122,76,-122s77,-121,77,-121
+s209,968,209,968c0,-2,84.7,-361.7,254,-1079c169.3,-717.3,254.7,-1077.7,256,-1081
+l0 -0c4,-6.7,10,-10,18,-10 H400000
+v40H1014.6
+s-87.3,378.7,-272.6,1166c-185.3,787.3,-279.3,1182.3,-282,1185
+c-2,6,-10,9,-24,9
+c-8,0,-12,-0.7,-12,-2z M1001 80
+h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7021em;"><span></span></span></span></span></span></span></span></span></span></div></figure><p id="e0a0249f-1027-4c89-9dd5-2e2324f6043f" class="">Donde:</p><ul id="e73a8bf2-4685-4cf4-a906-0711b0a1ef4d" class="bulleted-list"><li style="list-style-type:disc"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span></span></span></span></span><span>﻿</span></span> es la desviación estándar, que mide la dispersión de una variable cuantitativa.</li></ul></li></ol></div></details></div></details><hr id="48df4664-db3e-4736-a093-21393cf2e92b"/></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Ambientes conda</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="638bd6ad-fe9c-47a2-8089-fe08e0e46766" class="code"><code class="language-Python">conda env list
+conda create -n nombre_ambiente
+conda activate nombre_ambiente
+conda install pip
+pip install poetry ipykernel
+</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Clase #2</summary><div class="indented"><h2 id="1013f653-fd98-80db-99e8-d06aa935a40f" class=""><strong>Relación entre minutos usados e ingreso de clientes</strong></h2><p id="1013f653-fd98-8029-8a31-c7736bdd5521" class="">Este notebook utiliza <strong>Pandas</strong> y otras bibliotecas para analizar la relación entre los minutos utilizados por los clientes y sus ingresos totales, trabajando con varios conjuntos de datos.</p><hr id="1013f653-fd98-809b-af73-dee7ce5f082c"/><h3 id="1013f653-fd98-8059-9968-f9b25f9e414d" class=""><strong>1. Carga de datos</strong></h3><p id="1013f653-fd98-809f-96b7-cebaec0c1625" class="">El primer bloque de código carga los archivos de datos correspondientes a diferentes áreas geográficas:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1013f653-fd98-8011-b236-deb91bce8e6d" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">python
+Copy code
+import os
+import pandas as pd
+
+areas = [&#x27;ATLANTIC SOUTH AREA&#x27;, &#x27;CALIFORNIA NORTH AREA&#x27;, &#x27;CENTRAL-SOUTH TEXAS AREA&#x27;, &#x27;CHICAGO AREA&#x27;, &#x27;DALLAS AREA&#x27;, &#x27;DC-MARYLAND-VIRGINIA AREA&#x27;, &#x27;GREAT LAKES AREA&#x27;, &#x27;HOUSTON AREA&#x27;, &#x27;LOS ANGELES AREA&#x27;, &#x27;MIDWEST AREA&#x27;, &#x27;NEW ENGLAND AREA&#x27;, &#x27;NEW YORK CITY AREA&#x27;, &#x27;NORTH FLORIDA AREA&#x27;, &#x27;NORTHWEST-ROCKY MOUNTAIN AREA&#x27;, &#x27;OHIO AREA&#x27;, &#x27;PHILADELPHIA AREA&#x27;, &#x27;SOUTH FLORIDA AREA&#x27;, &#x27;SOUTHWEST AREA&#x27;, &#x27;TENNESSEE AREA&#x27;]
+
+lista_de_df = []
+for area in areas:
+    temp_df = pd.read_csv(&quot;Bases/&quot; + area + &quot;.csv&quot;, index_col=&quot;Customer_ID&quot;)
+    temp_df[&quot;area&quot;] = area
+    lista_de_df.append(temp_df)
+
+# Concatenar los datos de todas las áreas
+agr_df = pd.concat(lista_de_df, axis=0)
+
+</code></pre><p id="1013f653-fd98-8062-b703-f08e3ccbb51f" class=""><strong>Explicación:</strong></p><ul id="1013f653-fd98-806e-8471-caa74a5be023" class="bulleted-list"><li style="list-style-type:disc"><strong>Carga de archivos CSV</strong>: El código carga archivos CSV correspondientes a diferentes áreas y les agrega una columna <code>area</code> que identifica la región.</li></ul><ul id="1013f653-fd98-80e9-ba54-fce7f29f7272" class="bulleted-list"><li style="list-style-type:disc"><strong>Concatenación de datos</strong>: Los datos de todas las áreas se concatenan en un único <code>DataFrame</code> llamado <code>agr_df</code>.</li></ul><hr id="1013f653-fd98-80ae-a622-d6b7b6b9f4ed"/><h3 id="1013f653-fd98-80d4-8b51-d77df7fbc1fa" class=""><strong>2. Ordenación del DataFrame</strong></h3><p id="1013f653-fd98-80de-aab9-ee87f03a10bf" class="">Se organiza el <code>DataFrame</code> por su índice <code>Customer_ID</code> para facilitar futuras operaciones.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1013f653-fd98-80ab-9fed-eb21bb556346" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">python
+Copy code
+agr_df.sort_index(axis=0, inplace=True)
+
+</code></pre><hr id="1013f653-fd98-8013-ba79-f2b924fbbd12"/><h3 id="fec9a092-3584-410c-8e0d-04986a90be42" class=""><strong>3. Cruce de información</strong></h3><p id="1013f653-fd98-80c8-896f-c850409d62bf" class="">El cruce de información (merge) es una operación clave en el análisis de datos, ya que permite combinar diferentes tablas en base a claves comunes, como <code>Customer_ID</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1013f653-fd98-807e-974e-fc954c15a914" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">python
+Copy code
+# Ejemplo de cruce
+df_combinado = pd.merge(df1, df2, on=&#x27;Customer_ID&#x27;, how=&#x27;inner&#x27;)
+
+</code></pre><hr id="1013f653-fd98-80e4-9c73-ce00cb17b645"/><h3 id="1013f653-fd98-809e-b082-f79943aeb7c3" class=""><strong>4. Visualización de Datos</strong></h3><p id="1013f653-fd98-8086-8bf6-efbf51460aa6" class="">Para visualizar la relación entre el uso de minutos y los ingresos, se crean varios tipos de gráficos utilizando <code>seaborn</code> y <code>matplotlib</code>.</p><ul id="1013f653-fd98-80b8-b94f-fbfbf5f12e4e" class="bulleted-list"><li style="list-style-type:disc"><strong>Parámetros analizados</strong>: <code>totrev</code> (ingresos totales), <code>totmou</code> (minutos usados) y <code>eqpdays</code> (días de uso de equipo).</li></ul><h3 id="6802e1a1-e1ea-47fc-9761-23ed14b59bbc" class=""><strong>Gráficos Pairplot</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1013f653-fd98-8098-8938-f23169ac3bde" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">python
+Copy code
+sns.pairplot(data=df3, hue=&#x27;creditcd_x&#x27;, vars=[&#x27;totrev&#x27;, &#x27;totmou&#x27;, &#x27;eqpdays&#x27;])
+
+</code></pre><ul id="1013f653-fd98-8004-be7b-e531d439f179" class="bulleted-list"><li style="list-style-type:disc"><strong>Explicación</strong>: Este gráfico muestra relaciones entre varias variables, distinguiendo los datos según la variable <code>creditcd_x</code>.</li></ul><h3 id="1013f653-fd98-805d-a265-c13c4acea47e" class=""><strong>Boxplot</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1013f653-fd98-80be-8cf6-eb08a505aa05" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">python
+Copy code
+sns.boxplot(x=&#x27;Nivel_totrev&#x27;, y=&#x27;totmou&#x27;, data=df_con_etiquetas)
+
+</code></pre><ul id="1013f653-fd98-80c8-9d8d-ea09dc7e9d6c" class="bulleted-list"><li style="list-style-type:disc"><strong>Explicación</strong>: Muestra la relación entre el nivel de ingresos (<code>Nivel_totrev</code>) y el total de minutos utilizados (<code>totmou</code>) mediante un boxplot.</li></ul><h3 id="1013f653-fd98-8033-99d7-fe4e6e67dfff" class=""><strong>Violinplot y Countplot</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1013f653-fd98-80f9-b1d4-fee31be0c384" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">python
+Copy code
+sns.catplot(y=&quot;totmou&quot;, x=&quot;Nivel_totrev&quot;, kind=&quot;violin&quot;, data=df_con_etiquetas)
+sns.catplot(x=&quot;Nivel_totrev&quot;, kind=&#x27;count&#x27;, data=df_con_etiquetas, col=&#x27;creditcd_x&#x27;)
+
+</code></pre><ul id="b5d0f965-a0e3-482c-b7ad-adda48a44dcc" class="bulleted-list"><li style="list-style-type:disc"><strong>Explicación</strong>: Estos gráficos muestran la distribución de los minutos utilizados (<code>totmou</code>) segmentados por el nivel de ingresos y el tipo de tarjeta de crédito (<code>creditcd_x</code>).</li></ul><hr id="1013f653-fd98-8087-84b8-e25c540245bb"/><h3 id="1013f653-fd98-80f4-ad81-d114b2e9112f" class=""><strong>5. Ejercicio Práctico</strong></h3><p id="d5a86b45-abcd-4b9d-988c-6035f89ebd65" class="">El notebook sugiere realizar un <strong>boxplot</strong> de la variable <code>totmou</code> (minutos utilizados) segmentado por las variables <code>creditcd_x</code> (tipo de tarjeta de crédito) y <code>Nivel_totrev</code> (nivel de ingresos totales).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1013f653-fd98-80d7-8856-c56ad73f1aff" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">python
+Copy code
+# Realice el ejercicio en este espacio
+sns.boxplot(x=&#x27;creditcd_x&#x27;, y=&#x27;totmou&#x27;, data=df_con_etiquetas)
+
+</code></pre><hr id="1013f653-fd98-8017-8b02-f573069e35a7"/><h3 id="1013f653-fd98-8057-92be-d9a0094d7ab0" class=""><strong>6. Resumen Final</strong></h3><ol type="1" id="1013f653-fd98-8038-8939-fe015666cb04" class="numbered-list" start="1"><li><strong>Lectura de datos</strong>: Desde archivos CSV.</li></ol><ol type="1" id="1013f653-fd98-8054-b34b-fc1d68eb613e" class="numbered-list" start="2"><li><strong>Concatenación de datos</strong>: Uso de <code>pd.concat</code> para unir múltiples <code>DataFrames</code>.</li></ol><ol type="1" id="1013f653-fd98-8026-88ba-c94933e7f88b" class="numbered-list" start="3"><li><strong>Análisis estadístico</strong>: Explorar la relación entre los minutos utilizados y los ingresos totales de los clientes.</li></ol><ol type="1" id="1013f653-fd98-80f0-ac82-fb99e048b55c" class="numbered-list" start="4"><li><strong>Visualización</strong>: Gráficos con <code>matplotlib</code> y <code>seaborn</code> para visualizar tendencias y distribuciones de los datos.</li></ol><hr id="1013f653-fd98-8005-a391-d9bae8702015"/><h3 id="1013f653-fd98-8004-adb6-d886e3854c8d" class=""><strong>Enlace a documentación adicional:</strong></h3><p id="1013f653-fd98-80bb-8ae6-f66fbee9deac" class="">Para más información sobre cómo trabajar con <code>pandas</code>, puedes consultar la documentación oficial:</p><blockquote id="1013f653-fd98-80c2-8380-d4aedc02dfef" class="">Pandas Documentation</blockquote></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Clase #3</summary><div class="indented"><h2 id="683a9618-7474-419b-a3c7-4b977209a649" class=""><strong>Distribuciones de Probabilidad</strong></h2><p id="abf0afbb-ae1f-4845-b83c-0c91132d329d" class="">Las distribuciones de probabilidad son herramientas fundamentales en estadística y probabilidad, y describen cómo se distribuyen los valores posibles de una variable aleatoria. Existen dos tipos principales: distribuciones discretas y distribuciones continuas.</p><hr id="20d26260-47d8-49c4-a72a-c4e2b91df734"/><h3 id="b27015db-a15c-4130-8375-e3d43ad1a770" class=""><strong>1. ¿Qué es una distribución de probabilidad?</strong></h3><p id="c0b5f88b-8233-47b7-ae54-0fe6abb9d34d" class="">Una distribución de probabilidad asigna a cada valor posible de una variable aleatoria una probabilidad. La suma de todas las probabilidades debe ser igual a 1 en distribuciones discretas y la integral de la función de densidad debe ser igual a 1 en distribuciones continuas.</p><hr id="e5f8bc06-0cb6-4fdd-97bf-afd52d203ba0"/><h3 id="0ca3d056-6cf4-4a9f-8d6c-e005f26185ea" class=""><strong>2. Tipos de Distribuciones de Probabilidad</strong></h3><h3 id="5859eef4-f6b6-4d0e-8bef-56bba51763eb" class=""><strong>Distribuciones Discretas</strong></h3><p id="d65036ec-9c9f-4da5-a63b-7417fb702ad8" class="">Una variable aleatoria discreta toma valores específicos y contables, como el lanzamiento de un dado o el número de clientes que llegan a una tienda en un día.</p><h3 id="712d9038-1e4a-4392-8975-64cdd2c64755" class=""><strong>Distribuciones Discretas Comunes</strong></h3><ul id="692a3537-d789-4649-a05f-199e97431356" class="bulleted-list"><li style="list-style-type:disc"><strong>Distribución Binomial</strong><p id="9b60e3a8-b568-4729-9eed-27f1c5d1adec" class="">Describe el número de éxitos en una cantidad fija de ensayos independientes de un experimento de Bernoulli, donde cada ensayo tiene dos posibles resultados (éxito o fracaso).</p><p id="81be98d9-a810-4a13-b2e9-0fe7f553bcf7" class="">Fórmula para la probabilidad de k éxitos en n ensayos:</p><figure id="1083f653-fd98-805d-a4d1-cff7d4c2bd6d" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">(</mo><mfrac linethickness="0px"><mi>n</mi><mi>k</mi></mfrac><mo fence="true">)</mo></mrow><msup><mi>p</mi><mi>k</mi></msup><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><msup><mo stretchy="false">)</mo><mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msup></mrow><annotation encoding="application/x-tex">(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="mord"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1491em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span></span></span></div></figure><p id="8e8070b8-57fa-4b5c-a100-66e4f1749545" class="">donde p es la probabilidad de éxito y <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo fence="true">(</mo><mfrac linethickness="0px"><mi>n</mi><mi>k</mi></mfrac><mo fence="true">)</mo></mrow><mtext> </mtext></mrow><annotation encoding="application/x-tex">\binom{n}{k} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.35em;"></span><span class="mord"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7454em;"><span style="top:-2.355em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span style="top:-3.144em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span><span class="mord"> </span></span></span></span></span><span>﻿</span></span>es el número de combinaciones.</p><p id="06dac17c-16d9-424d-9582-6bb7b79c146a" class=""><strong>Ejemplo en Python</strong>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0ea4ee86-9142-4523-9d20-904ed90a0be8" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from scipy.stats import binom
+
+# Parámetros
+n = 10  # Número de ensayos
+p = 0.5  # Probabilidad de éxito
+k = 5  # Número de éxitos deseados
+
+# Cálculo de la probabilidad
+probabilidad = binom.pmf(k, n, p)
+print(f&quot;La probabilidad de {k} éxitos en {n} ensayos es: {probabilidad}&quot;)
+
+</code></pre></li></ul><ul id="88cbceeb-331e-4162-9c8f-3f836aaddb3d" class="bulleted-list"><li style="list-style-type:disc"><strong>Distribución de Poisson</strong>:P(X=k)=k!λke−λ​<p id="8205c407-3012-42c5-a68f-a43479a42dfb" class="">Modela el número de eventos que ocurren en un intervalo de tiempo o espacio fijo si los eventos ocurren con una tasa promedio conocida y de manera independiente.</p><p id="3d6ae0ba-f225-4833-a3ae-1fbe3ec2a3c9" class="">Fórmula:</p><p id="6971d82b-7568-40ad-b745-f15c1ffbf057" class="">P(X=k)=λke−λk!P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}</p><p id="258e699a-865f-4f72-96f3-a52cbe1b22f6" class="">donde λ\lambdaλ es el número promedio de eventos en un intervalo.</p><p id="e3f1acc3-d838-4e77-bb3b-704a2991080d" class=""><strong>Ejemplo en Python</strong>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d586aba6-1444-42d9-ab7b-a6d20a97e29f" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from scipy.stats import poisson
+
+# Parámetro λ (promedio de eventos)
+lambd = 4  # Ejemplo: promedio de 4 eventos por intervalo
+k = 2  # Número de eventos deseados
+
+# Cálculo de la probabilidad
+probabilidad = poisson.pmf(k, lambd)
+print(f&quot;La probabilidad de {k} eventos es: {probabilidad}&quot;)
+
+</code></pre></li></ul><hr id="66772e4d-2780-4623-b547-9f8bbf7624ae"/><h3 id="a51dbbcc-09ef-413e-82ea-f109333632c2" class=""><strong>Distribuciones Continuas</strong></h3><p id="a6d6ffd9-b73b-45e4-aa3c-d73ce5349ab8" class="">Una variable aleatoria continua puede tomar cualquier valor dentro de un rango, como la altura de una persona o el tiempo que tarda un coche en recorrer una distancia.</p><h3 id="9043670f-7043-455d-9bde-4b72c9beb244" class=""><strong>Distribuciones Continuas Comunes</strong></h3><ul id="fe139c9b-e9fa-4341-920c-13adc01dd12b" class="bulleted-list"><li style="list-style-type:disc"><strong>Distribución Normal (Gaussiana)</strong>:<p id="2af91e5e-1251-4a99-8967-c1b8025b02aa" class="">Describe fenómenos donde los valores se distribuyen simétricamente alrededor de la media, con la mayoría de los valores cerca de la media y pocos valores en los extremos.</p><p id="7db3fc97-fdcc-4152-83aa-31b324bf3840" class="">Su función de densidad es:<div class="indented"><figure id="1083f653-fd98-8076-b9a0-fd1e25789ba1" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><msqrt><mrow><mn>2</mn><mi>π</mi><msup><mi>σ</mi><mn>2</mn></msup></mrow></msqrt></mfrac><msup><mi>e</mi><mrow><mo>−</mo><mfrac><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mi>μ</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mrow><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup></mrow></mfrac></mrow></msup></mrow><annotation encoding="application/x-tex">f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2591em;vertical-align:-0.93em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.1549em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9551em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-2.9151em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.0849em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.93em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.3291em;"><span style="top:-3.4534em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.251em;"><span style="top:-2.5062em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9384em;"><span style="top:-2.9384em;margin-right:0.1em;"><span class="pstrut" style="height:2.6444em;"></span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.2255em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.5021em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">x</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">μ</span><span class="mclose mtight"><span class="mclose mtight">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.0484em;"><span style="top:-3.0484em;margin-right:0.1em;"><span class="pstrut" style="height:2.6444em;"></span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4938em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></div></figure></div></p><p id="3b04c834-c76d-4482-94f0-27e21804120d" class="">donde μ es la media y σ^2 es la varianza.</p><p id="02fc04fb-6a34-428a-8f27-45d9fdc35b73" class=""><strong>Ejemplo en Python</strong>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d7a5574a-11ab-4f1e-8e69-b7f62c91655b" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+# Parámetros
+mu = 0  # Media
+sigma = 1  # Desviación estándar
+
+# Valores aleatorios
+x = np.linspace(-5, 5, 100)
+y = norm.pdf(x, mu, sigma)
+
+# Gráfico
+plt.plot(x, y)
+plt.title(&#x27;Distribución Normal&#x27;)
+plt.xlabel(&#x27;Valores&#x27;)
+plt.ylabel(&#x27;Densidad de probabilidad&#x27;)
+plt.show()
+
+</code></pre></li></ul><ul id="8d3bcda0-e193-424f-ab6e-db5ae52bd755" class="bulleted-list"><li style="list-style-type:disc"><strong>Distribución Exponencial:</strong><p id="455ab96a-109a-44f8-9e6e-b786e7eedbb8" class="">Modela el tiempo entre eventos en un proceso de Poisson, es decir, el tiempo que se espera hasta que ocurra un evento.</p><p id="729a8ac6-d6b5-48f2-a3b4-32e7abc8ff6d" class="">Fórmula:</p><figure id="1083f653-fd98-80eb-a500-d523704cb36c" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>λ</mi><msup><mi>e</mi><mrow><mo>−</mo><mi>λ</mi><mi>x</mi></mrow></msup></mrow><annotation encoding="application/x-tex">f(x) = \lambda e^{-\lambda x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8991em;"></span><span class="mord mathnormal">λ</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">λ</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span></span></span></span></span></div></figure><p id="6bdadb13-d5a4-44c1-9252-f80401683aa2" class="">donde λ es la tasa promedio de eventos.</p><p id="cb2374e9-0413-440c-8ad7-ef10f9158068" class=""><strong>Ejemplo en Python</strong>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="95881ad6-ab94-4713-8348-6b2e065e564a" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from scipy.stats import expon
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Parámetro λ
+lambd = 1  # Ejemplo: tasa de 1 evento por unidad de tiempo
+
+# Valores aleatorios
+x = np.linspace(0, 10, 100)
+y = expon.pdf(x, scale=1/lambd)
+
+# Gráfico
+plt.plot(x, y)
+plt.title(&#x27;Distribución Exponencial&#x27;)
+plt.xlabel(&#x27;Tiempo&#x27;)
+plt.ylabel(&#x27;Densidad de probabilidad&#x27;)
+plt.show()
+
+</code></pre></li></ul><hr id="7b414956-cc2c-4164-908b-65282b8dacd1"/><h3 id="924ae977-aaad-40e6-a72a-ccc31f220c9c" class=""><strong>3. Diferencia entre Distribuciones Discretas y Continuas</strong></h3><h3 id="5ac20155-4975-42f7-8bf0-11c2da9f72e8" class="">Diferencias:</h3><ul id="7aafcbda-2de9-443d-abf6-da2f321ad2a9" class="bulleted-list"><li style="list-style-type:disc"><strong>Discretas</strong>:<ul id="647c53df-0c18-4df2-b8f2-937689587595" class="bulleted-list"><li style="list-style-type:circle">Toman valores específicos y contables.</li></ul><ul id="7fe06830-c8a2-47ee-ad33-8408880a5409" class="bulleted-list"><li style="list-style-type:circle">Ejemplo: Número de llamadas a una central en un día.</li></ul><ul id="7a73cb2d-d406-4080-9ed8-1c8eabe1973b" class="bulleted-list"><li style="list-style-type:circle">Suma de probabilidades = 1.</li></ul></li></ul><ul id="92ed9d34-e85c-4a32-8c06-56401f24877e" class="bulleted-list"><li style="list-style-type:disc"><strong>Continuas</strong>:<ul id="72ce3b6c-ff49-4a27-bfe0-93fdc6803a25" class="bulleted-list"><li style="list-style-type:circle">Toman cualquier valor en un rango continuo.</li></ul><ul id="3ca0fc86-995c-477e-93fe-2e154637349f" class="bulleted-list"><li style="list-style-type:circle">Ejemplo: Tiempo de espera en una fila.</li></ul><ul id="1547b06c-3eee-4589-b7b8-3617dac97293" class="bulleted-list"><li style="list-style-type:circle">La probabilidad se encuentra mediante la integral de la función de densidad, y el área bajo la curva debe ser 1.</li></ul></li></ul><hr id="599b838f-9fa7-4f2e-9b6c-8496e1814b1e"/><h3 id="d781609d-a135-49bd-b898-ae17f5bb5ee5" class=""><strong>4. Aplicaciones de las Distribuciones de Probabilidad</strong></h3><p id="563aa49d-5f23-488c-85c4-6c78b1687722" class="">Las distribuciones de probabilidad se utilizan en muchas áreas como la ingeniería, finanzas, ciencias sociales, y biología para modelar fenómenos que involucran la incertidumbre.</p><h3 id="3b9ca185-a328-455b-897c-9d99488e749f" class="">Ejemplos de Aplicaciones:</h3><ul id="b0d76895-f6e1-4ef3-a281-b3e618204705" class="bulleted-list"><li style="list-style-type:disc"><strong>Distribución Binomial</strong>:<p id="e62848dd-1867-467b-9307-117d6e7ecf12" class="">Usada para modelar la cantidad de veces que un evento ocurre en una serie de ensayos, como la probabilidad de éxito en ventas durante un día con 10 llamadas de ventas.</p></li></ul><ul id="885e4fdf-856c-4f8d-80cf-1771d5c02125" class="bulleted-list"><li style="list-style-type:disc"><strong>Distribución Normal</strong>:<p id="af3ad484-5b99-4826-b8a3-e863ce353b30" class="">Se aplica en cualquier área donde la media y la dispersión de los datos son importantes, como en la medición de características físicas (altura, peso).</p></li></ul><ul id="74cdd101-c801-47cd-bae7-a241ac315271" class="bulleted-list"><li style="list-style-type:disc"><strong>Distribución Exponencial</strong>:<p id="5dabc0ea-0ed5-4e13-97f5-e65ce1e9b55a" class="">Utilizada para modelar tiempos de espera, como el tiempo entre llegadas de clientes en una tienda.</p></li></ul><h2 id="1083f653-fd98-8081-8abd-d3800029c397" class="">Variables Aleatorias</h2><h3 id="1083f653-fd98-806c-abcc-f99ed7424a15" class="">Introducción a las Variables Aleatorias</h3><p id="1083f653-fd98-8014-b2bf-c97b2b604fed" class="">Una <strong>variable aleatoria</strong> es una función que asigna un número real a cada resultado de un experimento aleatorio. Se clasifican en dos tipos:</p><ol type="1" id="1083f653-fd98-805e-b296-ebdd5f57c30c" class="numbered-list" start="1"><li><strong>Variables Aleatorias Discretas</strong>: Toman un número finito o contable de valores.</li></ol><ol type="1" id="1083f653-fd98-80c8-8b33-f56eb18a765b" class="numbered-list" start="2"><li><strong>Variables Aleatorias Continuas</strong>: Pueden tomar un número infinito de valores dentro de un intervalo.</li></ol><h3 id="1083f653-fd98-80c3-a660-c0448745c0a4" class="">Ejemplos</h3><ul id="1083f653-fd98-805b-bb52-f26d1662d6d0" class="bulleted-list"><li style="list-style-type:disc"><strong>Variable Aleatoria Discreta</strong>: El número de caras al lanzar un dado.</li></ul><ul id="1083f653-fd98-808a-adbd-f3fd988b0046" class="bulleted-list"><li style="list-style-type:disc"><strong>Variable Aleatoria Continua</strong>: La altura de una persona.</li></ul><hr id="7ff7c47d-841b-47fa-98e5-838d65b77a7d"/><h2 id="1083f653-fd98-80f1-826e-dad86d0a4fbe" class="">Variable Aleatoria Discreta</h2><h3 id="1083f653-fd98-8085-8a01-fa59ce7c8c35" class="">Definición</h3><p id="b5ca8c35-ab8e-42b1-b725-f4bd55ab7e1f" class="">Una variable aleatoria discreta puede tomar un número finito o contable de valores, cada uno con una probabilidad asociada.</p><h3 id="1083f653-fd98-8098-ac54-cc6d7e5bd0ae" class="">Ejemplos</h3><ul id="9de0939e-e7c9-43fc-a017-c7ef88c0839d" class="bulleted-list"><li style="list-style-type:disc"><strong>Lanzamiento de un Dado</strong>: Posibles resultados: 1, 2, 3, 4, 5, 6.</li></ul><ul id="1083f653-fd98-8009-8e42-fa030242052a" class="bulleted-list"><li style="list-style-type:disc"><strong>Número de Llamadas en una Hora</strong>: Puede ser 0, 1, 2, 3, etc.</li></ul><h3 id="1083f653-fd98-8060-a214-fedcf3a5f2e1" class="">Ejemplo en Python</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1083f653-fd98-80b9-94d2-c6c82c1a8f99" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import numpy as np
+import matplotlib.pyplot as plt
+
+# Probabilidades de los resultados de un dado
+resultados = [1, 2, 3, 4, 5, 6]
+probabilidades = [1/6] * 6
+
+# Visualización
+plt.bar(resultados, probabilidades)
+plt.xlabel(&#x27;Resultados&#x27;)
+plt.ylabel(&#x27;Probabilidad&#x27;)
+plt.title(&#x27;Distribución de Probabilidad de un Dado&#x27;)
+plt.xticks(resultados)
+plt.ylim(0, 1)
+plt.show()
+
+</code></pre><hr id="1083f653-fd98-80b8-8ed3-e51de2365888"/><h2 id="1a5559cd-c7d8-40cd-bc34-9bd5da1dc3aa" class="">Variable Aleatoria Continua</h2><h3 id="1083f653-fd98-80dc-a952-c09d0699a6f9" class="">Definición</h3><p id="1083f653-fd98-8055-a4d2-c11626810880" class="">Una variable aleatoria continua puede tomar cualquier valor dentro de un intervalo determinado.</p><h3 id="1083f653-fd98-80a1-9081-e4968f95d4b1" class="">Ejemplos</h3><ul id="1083f653-fd98-80d2-bca5-efff5d817bae" class="bulleted-list"><li style="list-style-type:disc"><strong>Temperatura</strong>: Puede ser cualquier valor dentro de un rango.</li></ul><ul id="1083f653-fd98-803c-98d1-cce6ad227972" class="bulleted-list"><li style="list-style-type:disc"><strong>Tiempo de Espera</strong>: Puede ser 2.5 minutos, 3.2 minutos, etc.</li></ul><h3 id="1083f653-fd98-80aa-b79a-d4d692b0ac54" class="">Ejemplo en Python</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1083f653-fd98-806d-b759-f6aec481bb48" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Generar datos aleatorios continuos
+datos = np.random.normal(loc=0, scale=1, size=1000)
+
+# Visualización
+sns.histplot(datos, bins=30, kde=True)
+plt.title(&#x27;Distribución Normal&#x27;)
+plt.xlabel(&#x27;Valor&#x27;)
+plt.ylabel(&#x27;Frecuencia&#x27;)
+plt.show()
+
+</code></pre><hr id="1083f653-fd98-80be-9c45-f20f1623b287"/><h2 id="1083f653-fd98-80cd-916b-ff49e67edc9c" class="">Distribuciones de Probabilidad</h2><h3 id="1083f653-fd98-804e-9c71-c6c6c18bab57" class="">Descripción General</h3><p id="1083f653-fd98-80d1-acc3-e2689418c3a9" class="">Las distribuciones de probabilidad describen cómo se distribuyen las probabilidades entre los diferentes valores que puede tomar una variable aleatoria.</p><ul id="1083f653-fd98-80d2-8e2d-cc1effe50c86" class="bulleted-list"><li style="list-style-type:disc"><strong>Función de Masa de Probabilidad (FMP)</strong>: Se usa para variables discretas. Asocia a cada valor un nivel de probabilidad.</li></ul><ul id="1083f653-fd98-801a-9b22-d15937b0378c" class="bulleted-list"><li style="list-style-type:disc"><strong>Función de Densidad de Probabilidad (FDP)</strong>: Se usa para variables continuas. Indica la densidad de probabilidad en un intervalo.</li></ul><hr id="1083f653-fd98-800d-9fae-fd841d7008d1"/><h2 id="1083f653-fd98-8078-8341-cd1f85165448" class="">Distribuciones de Probabilidad Discreta</h2><h3 id="7fe44976-b29b-4ffb-be5d-ad2beffe89ac" class="">Introducción</h3><p id="1083f653-fd98-807e-b8d4-e6626fdccbdd" class="">Las distribuciones de probabilidad discreta asignan probabilidades a un conjunto finito o numerable de resultados.</p><h3 id="1083f653-fd98-8087-b2ce-d6e533d4e192" class="">Fórmulas</h3><ol type="1" id="1083f653-fd98-80bf-81e9-f1419a3a5813" class="numbered-list" start="1"><li><strong>Valor Esperado (E[X])</strong>:<br/><br/></li></ol><figure id="1083f653-fd98-80d8-b86b-c1bd6ac3211f" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo stretchy="false">[</mo><mi>X</mi><mo stretchy="false">]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>x</mi><mi>i</mi></msub><mo>⋅</mo><mi>P</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E[X] = \sum_{i=1}^{n} x_i \cdot P(x_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9291em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></div></figure><ol type="1" id="1083f653-fd98-8074-8ac5-d7680623100e" class="numbered-list" start="1"><li><strong>Varianza (Var(X))</strong>:<br/><br/></li></ol><figure id="1083f653-fd98-807d-ab9a-f2dea426761e" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>V</mi><mi>a</mi><mi>r</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mi>E</mi><mo stretchy="false">[</mo><msup><mi>X</mi><mn>2</mn></msup><mo stretchy="false">]</mo><mo>−</mo><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">[</mo><mi>X</mi><mo stretchy="false">]</mo><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">Var(X) = E[X^2] - (E[X])^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">Va</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">]</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></div></figure><h3 id="1083f653-fd98-80be-abe7-c842095f8026" class="">Ejemplo en Python</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1083f653-fd98-8072-beaf-f790a07ad30b" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">python
+Copy code
+# Valores y probabilidades
+valores = [0, 1, 2, 3]
+probabilidades = [0.1, 0.2, 0.3, 0.4]
+
+# Cálculo del valor esperado
+valor_esperado = sum(valores[i] * probabilidades[i] for i in range(len(valores)))
+print(f&quot;Valor Esperado: {valor_esperado}&quot;)
+
+# Cálculo de la varianza
+valor_esperado_cuadrado = sum((valores[i]**2) * probabilidades[i] for i in range(len(valores)))
+varianza = valor_esperado_cuadrado - valor_esperado**2
+print(f&quot;Varianza: {varianza}&quot;)
+
+</code></pre><hr id="4ae20dbd-070f-4982-b22b-e471425f8b14"/><h2 id="569bbbb7-4939-4add-814d-82d9e98b45cb" class="">Distribución Uniforme</h2><h3 id="1083f653-fd98-8017-86ef-cb32bd411cf2" class="">Definición</h3><p id="1083f653-fd98-8075-92dc-d3d7d05ca3b1" class="">La distribución uniforme es una distribución de probabilidad en la que todos los resultados posibles tienen la misma probabilidad de ocurrir.</p><h3 id="1083f653-fd98-807b-b009-cb34f7e8b0e5" class="">Ejemplos</h3><ul id="1083f653-fd98-803d-b183-dc57d0a3f2ac" class="bulleted-list"><li style="list-style-type:disc"><strong>Distribución Uniforme Discreta</strong>: Lanzamiento de un dado justo.</li></ul><ul id="1083f653-fd98-805e-b5c2-c7cae4fb0c81" class="bulleted-list"><li style="list-style-type:disc"><strong>Distribución Uniforme Continua</strong>: Cualquier número en el intervalo [a, b].</li></ul><h3 id="1083f653-fd98-80c3-ad8a-c5d67e9743d4" class="">Ejemplo en Python</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1083f653-fd98-80bb-a522-d9f9d1767fd2" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import numpy as np
+import matplotlib.pyplot as plt
+
+# Parámetros
+a, b = 0, 1
+x = np.linspace(a, b, 100)
+pdf = np.ones_like(x) / (b - a)
+
+# Visualización
+plt.plot(x, pdf, label=&#x27;PDF Uniforme&#x27;)
+plt.fill_between(x, pdf, alpha=0.2)
+plt.title(&#x27;Distribución Uniforme&#x27;)
+plt.xlabel(&#x27;Valor&#x27;)
+plt.ylabel(&#x27;Densidad de Probabilidad&#x27;)
+plt.legend()
+plt.show()
+
+</code></pre><hr id="1083f653-fd98-8056-b8f7-f256ef598889"/><h2 id="1083f653-fd98-8013-973c-ed17466b0f6b" class="">Distribución Binomial</h2><h3 id="50795d3d-8bb0-4b1b-a196-c7ec75de0d1a" class="">Definición</h3><p id="1083f653-fd98-808b-a229-c365c3044e33" class="">La distribución binomial modela el número de éxitos en una serie de experimentos de Bernoulli (éxito o fracaso).</p><h3 id="1083f653-fd98-8033-9945-eddef5ab91e7" class="">Fórmulas</h3><ol type="1" id="1083f653-fd98-8051-bfc9-c29d49e9dfc1" class="numbered-list" start="1"><li><strong>Probabilidad de k éxitos en n intentos</strong>:<br/><br/></li></ol><figure id="1083f653-fd98-8029-857e-e30cbc3bc57d" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">(</mo><mfrac linethickness="0px"><mi>n</mi><mi>k</mi></mfrac><mo fence="true">)</mo></mrow><msup><mi>p</mi><mi>k</mi></msup><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><msup><mo stretchy="false">)</mo><mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+
+P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
+
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="mord"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1491em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span></span></span></div></figure><ol type="1" id="1083f653-fd98-8073-ab9d-e99be57bab05" class="numbered-list" start="1"><li><strong>Valor Esperado (E[X])</strong>:<br/><br/><figure id="1083f653-fd98-8077-be50-e1d7b58ba689" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo stretchy="false">[</mo><mi>X</mi><mo stretchy="false">]</mo><mo>=</mo><mi>n</mi><mo>⋅</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">E[X] = n \cdot p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span></span></div></figure></li></ol><ol type="1" id="8eee4250-1716-46d7-a50b-2016d6361ab7" class="numbered-list" start="2"><li><strong>Varianza (Var(X))</strong>:<figure id="1083f653-fd98-8034-b89b-f7e3a30b252b" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>V</mi><mi>a</mi><mi>r</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi><mo>⋅</mo><mi>p</mi><mo>⋅</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Var(X) = n \cdot p \cdot (1 - p)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">Va</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mclose">)</span></span></span></span></span></div></figure></li></ol><h3 id="eb126311-437a-4472-a7e3-600f0631fbb0" class="">Ejemplo en Python</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1083f653-fd98-8000-82bd-ddae55ba861b" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">python
+Copy code
+from scipy.stats import binom
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parámetros
+n = 10  # número de ensayos
+p = 0.5  # probabilidad de éxito
+
+# Valores posibles
+x = np.arange(0, n+1)
+pmf = binom.pmf(x, n, p)
+
+# Visualización
+plt.bar(x, pmf)
+plt.title(&#x27;Distribución Binomial&#x27;)
+plt.xlabel(&#x27;Número de Éxitos&#x27;)
+plt.ylabel(&#x27;Probabilidad&#x27;)
+plt.xticks(x)
+plt.show()
+
+</code></pre><hr id="1083f653-fd98-80f6-a3b5-db5c8c08e024"/><h2 id="1083f653-fd98-80bf-a54f-eaf37d6ad3a6" class="">Distribución Binomial Negativa</h2><h3 id="1083f653-fd98-807b-a552-ea5acc937de4" class="">Definición</h3><p id="1083f653-fd98-8061-9e18-d774b0fcfbfb" class="">La distribución binomial negativa modela el número de ensayos necesarios para obtener un número fijo de éxitos en experimentos de Bernoulli.</p><h3 id="1083f653-fd98-806c-8e27-f319371904c8" class="">Fórmulas</h3><ol type="1" id="d3b65848-b523-4fab-9a47-6b686068da2b" class="numbered-list" start="1"><li><strong>Probabilidad de k fracasos antes de r éxitos</strong>:</li></ol><p id="1083f653-fd98-805f-aece-eabaa3920c9e" class=""><div class="indented"><p id="1083f653-fd98-8092-8e90-f97695f73e94" class="">
+</p></div></p><figure id="9f599450-eaa0-4f3b-bb3b-3a601c1164b3" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mfrac><mrow><mi>k</mi><mo>+</mo><mi>r</mi><mo>−</mo><mn>1</mn></mrow><mi>k</mi></mfrac><mo stretchy="false">)</mo><msup><mi>p</mi><mi>r</mi></msup><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><msup><mo stretchy="false">)</mo><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">P(X=k)=( \frac{k+r−1}{k} )p^r(1−p)^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1491em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span></span></div></figure><h3 id="1083f653-fd98-80e3-806d-ec3a3f07ff9e" class="">Ejemplo en Python</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a25885fd-6041-44cd-ab02-154283c36123" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from scipy.stats import nbinom
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parámetros
+r = 3  # número de éxitos
+p = 0.5  # probabilidad de éxito
+
+# Valores posibles
+k = np.arange(0, 20)
+pmf = nbinom.pmf(k, r, p)
+
+# Visualización
+plt.bar(k, pmf)
+plt.title(&#x27;Distribución Binomial Negativa&#x27;)
+plt.xlabel(&#x27;Número de Fracasos&#x27;)
+plt.ylabel(&#x27;Probabilidad&#x27;)
+plt.show()
+
+</code></pre><hr id="1083f653-fd98-8056-b89a-cbd0b64ae507"/><h2 id="1083f653-fd98-8074-aaf1-d82cb6683c70" class="">Distribución de Poisson</h2><h3 id="1083f653-fd98-803e-90f7-f3c7a7f05a58" class="">Definición</h3><p id="22f9a2b1-71de-4175-8925-672809e80639" class="">La distribución de Poisson modela el número de eventos que ocurren en un intervalo de tiempo o espacio fijo.</p><h3 id="1083f653-fd98-80eb-b514-c00d981ce593" class="">Fórmulas</h3><ol type="1" id="1083f653-fd98-8028-9055-c13341164e0f" class="numbered-list" start="1"><li><strong>Probabilidad de k eventos en un intervalo</strong>:<br/>donde λ es la tasa promedio de eventos.<br/><figure id="83b7f979-4c4f-4791-ab04-b9a0c3b75dd9" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><msup><mi>λ</mi><mi>k</mi></msup><msup><mi>e</mi><mrow><mo>−</mo><mi>λ</mi></mrow></msup></mrow><mrow><mi>k</mi><mo stretchy="false">!</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">P(X=k)= \frac{\lambda^k e^{-\lambda}}{k!}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2121em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5261em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">λ</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure></li></ol><h3 id="1083f653-fd98-800d-ae79-edaccf10940d" class="">Ejemplo en Python</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f3dc5e5c-85e4-45e1-8681-f3c44373220d" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from scipy.stats import poisson
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parámetro
+lambda_ = 3  # tasa promedio de eventos
+
+# Valores posibles
+k = np.arange(0, 10)
+pmf = poisson.pmf(k, lambda_)
+
+# Visualización
+plt.bar(k, pmf)
+plt.title(&#x27;Distribución de Poisson&#x27;)
+plt.xlabel(&#x27;Número de Eventos&#x27;)
+plt.ylabel(&#x27;Probabilidad&#x27;)
+plt.show()
+
+</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Clase #4</summary></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Clase #5</summary></details><p id="b4510422-5b5f-40bf-9f50-5f6895626003" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
